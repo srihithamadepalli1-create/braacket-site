@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Men's Sweet 16 Bracket</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #111;
+}
+h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  color: #4b2e83;
+}
+.round-title {
+  text-align: center;
+  font-weight: bold;
+  color: #4b2e83;
+  margin-bottom: 10px;
+}
+.bracket {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.round {
+  flex: 1;
+  min-width: 200px;
+}
+.matchup {
+  margin: 10px 0;
+  border-left: 3px solid #ccc;
+  padding-left: 10px;
+}
+.team {
+  padding: 8px;
+  margin: 4px 0;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.team:hover {
+  background: #e0d4f7;
+}
+.selected {
+  background: #c5a6ff;
+  border-color: #4b2e83;
+}
+.slot {
+  padding: 8px;
+  margin: 6px 0;
+  border: 2px dashed #4b2e83;
+  min-height: 32px;
+  border-radius: 8px;
+}
+.champion {
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  padding: 14px;
+  border-radius: 10px;
+  border: 3px solid #4b2e83;
+  background: #f3ecff;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Men’s March Madness — Sweet 16 to Champion</h2>
+
+<div class="bracket">
+
+  <div class="round">
+    <div class="round-title">Sweet 16</div>
+
+    <div class="matchup" data-next="m_e1">
+      <div class="team" onclick="mPick(this)">Purdue (2)</div>
+      <div class="team" onclick="mPick(this)">Texas (11)</div>
+    </div>
+
+    <div class="matchup" data-next="m_e1">
+      <div class="team" onclick="mPick(this)">Arizona (1)</div>
+      <div class="team" onclick="mPick(this)">Arkansas (4)</div>
+    </div>
+
+    <div class="matchup" data-next="m_e2">
+      <div class="team" onclick="mPick(this)">Houston (2)</div>
+      <div class="team" onclick="mPick(this)">Illinois (3)</div>
+    </div>
+
+    <div class="matchup" data-next="m_e2">
+      <div class="team" onclick="mPick(this)">Nebraska (4)</div>
+      <div class="team" onclick="mPick(this)">Iowa (9)</div>
+    </div>
+
+    <div class="matchup" data-next="m_e3">
+      <div class="team" onclick="mPick(this)">Duke (1)</div>
+      <div class="team" onclick="mPick(this)">St. John's (5)</div>
+    </div>
+
+    <div class="matchup" data-next="m_e3">
+      <div class="team" onclick="mPick(this)">UConn (2)</div>
+      <div class="team" onclick="mPick(this)">Michigan State (3)</div>
+    </div>
+
+    <div class="matchup" data-next="m_e4">
+      <div class="team" onclick="mPick(this)">Michigan (1)</div>
+      <div class="team" onclick="mPick(this)">Alabama (5)</div>
+    </div>
+
+    <div class="matchup" data-next="m_e4">
+      <div class="team" onclick="mPick(this)">Iowa State (2)</div>
+      <div class="team" onclick="mPick(this)">Tennessee (6)</div>
+    </div>
+  </div>
+
+  <div class="round">
+    <div class="round-title">Elite 8</div>
+    <div class="slot" id="m_e1"></div>
+    <div class="slot" id="m_e2"></div>
+    <div class="slot" id="m_e3"></div>
+    <div class="slot" id="m_e4"></div>
+  </div>
+
+  <div class="round">
+    <div class="round-title">Final Four</div>
+    <div class="slot" id="m_f1"></div>
+    <div class="slot" id="m_f2"></div>
+  </div>
+
+  <div class="round">
+    <div class="round-title">Championship</div>
+    <div class="slot" id="m_final"></div>
+    <div class="champion" id="m_champ">Click teams to advance</div>
+  </div>
+
+</div>
+
+<script>
+function mPick(el) {
+  const match = el.parentNode;
+  match.querySelectorAll('.team').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+
+  const next = match.getAttribute('data-next');
+  const slot = document.getElementById(next);
+
+  if (!slot.textContent) {
+    slot.textContent = el.textContent;
+  } else {
+    if (next === 'm_e1' || next === 'm_e2') {
+      document.getElementById('m_f1').textContent = el.textContent;
+    }
+    if (next === 'm_e3' || next === 'm_e4') {
+      document.getElementById('m_f2').textContent = el.textContent;
+    }
+  }
+
+  const f1 = document.getElementById('m_f1').textContent;
+  const f2 = document.getElementById('m_f2').textContent;
+  if (f1 && f2) {
+    document.getElementById('m_final').textContent = f1 + " vs " + f2;
+  }
+
+  if (document.getElementById('m_final').textContent.includes(el.textContent)) {
+    document.getElementById('m_champ').textContent = el.textContent + " — Champion";
+  }
+}
+</script>
+
+</body>
+</html>
