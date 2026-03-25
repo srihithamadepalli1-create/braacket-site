@@ -2,178 +2,210 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Men's Sweet 16 Bracket</title>
+<title>Men's March Madness — ESPN Style Bracket</title>
+
 <style>
 body {
-  font-family: Arial, sans-serif;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
-  color: #111;
+    font-family: Arial, sans-serif;
+    background: #f4f4f8;
+    margin: 0;
+    padding: 20px;
 }
-h2 {
-  text-align: center;
-  font-size: 30px;
-  font-weight: 800;
-  color: #4b2e83;
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #4b2e83;
+    font-weight: 900;
+    margin-bottom: 30px;
 }
+
+/* --- BRACKET GRID --- */
+.bracket-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* --- ROUND TITLES --- */
 .round-title {
-  text-align: center;
-  font-weight: bold;
-  color: #4b2e83;
-  margin-bottom: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4b2e83;
+    margin-bottom: 10px;
 }
-.bracket {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-}
-.round {
-  flex: 1;
-  min-width: 200px;
-}
+
+/* --- MATCHUPS --- */
 .matchup {
-  margin: 10px 0;
-  border-left: 3px solid #ccc;
-  padding-left: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    position: relative;
+    border: 2px solid #ddd;
 }
+
 .team {
-  padding: 8px;
-  margin: 4px 0;
-  border: 2px solid #1a1a1a;
-  border-radius: 8px;
-  background: #f5f5f5;
-  cursor: pointer;
-  transition: 0.2s;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    border: 2px solid #4b2e83;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #fafafa;
 }
+
 .team:hover {
-  background: #e0d4f7;
+    background: #e8ddff;
 }
+
 .selected {
-  background: #c5a6ff;
-  border-color: #4b2e83;
+    background: #c5a6ff;
+    border-color: #4b2e83;
+    color: black;
 }
+
+/* --- ADVANCING SLOTS --- */
 .slot {
-  padding: 8px;
-  margin: 6px 0;
-  border: 2px dashed #4b2e83;
-  min-height: 32px;
-  border-radius: 8px;
+    padding: 12px;
+    margin: 20px 0;
+    border: 2px dashed #4b2e83;
+    border-radius: 10px;
+    min-height: 40px;
+    background: #fdfaff;
+    font-weight: bold;
+    text-align: center;
 }
-.champion {
-  font-size: 20px;
-  font-weight: 800;
-  text-align: center;
-  padding: 14px;
-  border-radius: 10px;
-  border: 3px solid #4b2e83;
-  background: #f3ecff;
-  margin-top: 10px;
+
+/* --- CHAMPIONSHIP BOX --- */
+.champion-box {
+    grid-column: span 4;
+    text-align: center;
+    margin-top: 40px;
+}
+
+#champion {
+    font-size: 26px;
+    font-weight: 900;
+    padding: 20px;
+    border: 3px solid #4b2e83;
+    border-radius: 12px;
+    background: #f3ecff;
+    display: inline-block;
 }
 </style>
 </head>
 
 <body>
 
-<h2>Men’s March Madness — Sweet 16 to Champion</h2>
+<h1>Men’s March Madness — Sweet 16 to Champion</h1>
 
-<div class="bracket">
+<div class="bracket-grid">
 
-  <div class="round">
-    <div class="round-title">Sweet 16</div>
+    <!-- SWEET 16 -->
+    <div>
+        <div class="round-title">Sweet 16</div>
 
-    <div class="matchup" data-next="m_e1">
-      <div class="team" onclick="mPick(this)">Purdue (2)</div>
-      <div class="team" onclick="mPick(this)">Texas (11)</div>
+        <div class="matchup" data-next="e1">
+            <div class="team" onclick="pick(this)">Purdue (2)</div>
+            <div class="team" onclick="pick(this)">Texas (11)</div>
+        </div>
+
+        <div class="matchup" data-next="e1">
+            <div class="team" onclick="pick(this)">Arizona (1)</div>
+            <div class="team" onclick="pick(this)">Arkansas (4)</div>
+        </div>
+
+        <div class="matchup" data-next="e2">
+            <div class="team" onclick="pick(this)">Houston (2)</div>
+            <div class="team" onclick="pick(this)">Illinois (3)</div>
+        </div>
+
+        <div class="matchup" data-next="e2">
+            <div class="team" onclick="pick(this)">Nebraska (4)</div>
+            <div class="team" onclick="pick(this)">Iowa (9)</div>
+        </div>
+
+        <div class="matchup" data-next="e3">
+            <div class="team" onclick="pick(this)">Duke (1)</div>
+            <div class="team" onclick="pick(this)">St. John's (5)</div>
+        </div>
+
+        <div class="matchup" data-next="e3">
+            <div class="team" onclick="pick(this)">UConn (2)</div>
+            <div class="team" onclick="pick(this)">Michigan State (3)</div>
+        </div>
+
+        <div class="matchup" data-next="e4">
+            <div class="team" onclick="pick(this)">Michigan (1)</div>
+            <div class="team" onclick="pick(this)">Alabama (5)</div>
+        </div>
+
+        <div class="matchup" data-next="e4">
+            <div class="team" onclick="pick(this)">Iowa State (2)</div>
+            <div class="team" onclick="pick(this)">Tennessee (6)</div>
+        </div>
     </div>
 
-    <div class="matchup" data-next="m_e1">
-      <div class="team" onclick="mPick(this)">Arizona (1)</div>
-      <div class="team" onclick="mPick(this)">Arkansas (4)</div>
+    <!-- ELITE 8 -->
+    <div>
+        <div class="round-title">Elite 8</div>
+        <div class="slot" id="e1"></div>
+        <div class="slot" id="e2"></div>
+        <div class="slot" id="e3"></div>
+        <div class="slot" id="e4"></div>
     </div>
 
-    <div class="matchup" data-next="m_e2">
-      <div class="team" onclick="mPick(this)">Houston (2)</div>
-      <div class="team" onclick="mPick(this)">Illinois (3)</div>
+    <!-- FINAL FOUR -->
+    <div>
+        <div class="round-title">Final Four</div>
+        <div class="slot" id="f1"></div>
+        <div class="slot" id="f2"></div>
     </div>
 
-    <div class="matchup" data-next="m_e2">
-      <div class="team" onclick="mPick(this)">Nebraska (4)</div>
-      <div class="team" onclick="mPick(this)">Iowa (9)</div>
+    <!-- CHAMPIONSHIP -->
+    <div>
+        <div class="round-title">Championship</div>
+        <div class="slot" id="final"></div>
     </div>
-
-    <div class="matchup" data-next="m_e3">
-      <div class="team" onclick="mPick(this)">Duke (1)</div>
-      <div class="team" onclick="mPick(this)">St. John's (5)</div>
-    </div>
-
-    <div class="matchup" data-next="m_e3">
-      <div class="team" onclick="mPick(this)">UConn (2)</div>
-      <div class="team" onclick="mPick(this)">Michigan State (3)</div>
-    </div>
-
-    <div class="matchup" data-next="m_e4">
-      <div class="team" onclick="mPick(this)">Michigan (1)</div>
-      <div class="team" onclick="mPick(this)">Alabama (5)</div>
-    </div>
-
-    <div class="matchup" data-next="m_e4">
-      <div class="team" onclick="mPick(this)">Iowa State (2)</div>
-      <div class="team" onclick="mPick(this)">Tennessee (6)</div>
-    </div>
-  </div>
-
-  <div class="round">
-    <div class="round-title">Elite 8</div>
-    <div class="slot" id="m_e1"></div>
-    <div class="slot" id="m_e2"></div>
-    <div class="slot" id="m_e3"></div>
-    <div class="slot" id="m_e4"></div>
-  </div>
-
-  <div class="round">
-    <div class="round-title">Final Four</div>
-    <div class="slot" id="m_f1"></div>
-    <div class="slot" id="m_f2"></div>
-  </div>
-
-  <div class="round">
-    <div class="round-title">Championship</div>
-    <div class="slot" id="m_final"></div>
-    <div class="champion" id="m_champ">Click teams to advance</div>
-  </div>
 
 </div>
 
+<div class="champion-box">
+    <div id="champion">Click teams to advance</div>
+</div>
+
 <script>
-function mPick(el) {
-  const match = el.parentNode;
-  match.querySelectorAll('.team').forEach(t => t.classList.remove('selected'));
-  el.classList.add('selected');
+function pick(el) {
+    const match = el.parentNode;
+    match.querySelectorAll('.team').forEach(t => t.classList.remove('selected'));
+    el.classList.add('selected');
 
-  const next = match.getAttribute('data-next');
-  const slot = document.getElementById(next);
+    const next = match.getAttribute('data-next');
+    const slot = document.getElementById(next);
 
-  if (!slot.textContent) {
     slot.textContent = el.textContent;
-  } else {
-    if (next === 'm_e1' || next === 'm_e2') {
-      document.getElementById('m_f1').textContent = el.textContent;
-    }
-    if (next === 'm_e3' || next === 'm_e4') {
-      document.getElementById('m_f2').textContent = el.textContent;
-    }
-  }
 
-  const f1 = document.getElementById('m_f1').textContent;
-  const f2 = document.getElementById('m_f2').textContent;
-  if (f1 && f2) {
-    document.getElementById('m_final').textContent = f1 + " vs " + f2;
-  }
+    if (next === "e1" || next === "e2") {
+        document.getElementById("f1").textContent = el.textContent;
+    }
+    if (next === "e3" || next === "e4") {
+        document.getElementById("f2").textContent = el.textContent;
+    }
 
-  if (document.getElementById('m_final').textContent.includes(el.textContent)) {
-    document.getElementById('m_champ').textContent = el.textContent + " — Champion";
-  }
+    const f1 = document.getElementById("f1").textContent;
+    const f2 = document.getElementById("f2").textContent;
+
+    if (f1 && f2) {
+        document.getElementById("final").textContent = f1 + " vs " + f2;
+    }
+
+    if (document.getElementById("final").textContent.includes(el.textContent)) {
+        document.getElementById("champion").textContent = el.textContent + " — Champion";
+    }
 }
 </script>
 
